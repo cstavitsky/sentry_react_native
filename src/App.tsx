@@ -41,7 +41,7 @@ Sentry.init({
   integrations: [
     new Sentry.ReactNativeTracing({
       routingInstrumentation: reactNavigationV5Instrumentation,
-      tracingOrigins: ['localhost', /^\//, /^https:\/\//]
+      tracingOrigins: ['localhost', /^\//, /^https:\/\//],
       // How to ignore transactions for the "Manual Tracker" screen
       // beforeNavigate: (context: Sentry.ReactNavigationTransactionContext) => {
       //   if (context.data.route.name === 'ManualTracker') {
@@ -49,7 +49,7 @@ Sentry.init({
         //   }
         //   return context;
         // },
-      // idleTimeout: 5000
+      idleTimeout: 30000 // extra long idleTimeout so we can force react.render spans to be created upon navigating away
     }),
   ],
   tracesSampleRate: 1.0,
